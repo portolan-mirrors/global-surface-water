@@ -158,6 +158,8 @@
         "visual"
       ],
       "file:size": 82329054,
+      "start_datetime": "1984-03-16T00:00:00Z",
+      "end_datetime": "2024-12-31T23:59:59Z",
       "proj:code": "EPSG:4326",
       "proj:shape": [
         35000,
@@ -208,6 +210,7 @@
       "href": "./style.json",
       "type": "application/vnd.mapbox.style+json",
       "title": "Maximum water extent (Data Users Guide colours)",
+      "description": "MapLibre style over the global overview COG (cog:// protocol), with the Data Users Guide colours; not water and nodata are transparent.",
       "roles": [
         "style",
         "default"
@@ -231,8 +234,8 @@
       "roles": [
         "collection-mirror"
       ],
-      "file:size": 70639,
-      "file:checksum": "1220f89f9d05ad200003698dc5d95c4f1f499a4c17a3ce9b30f881c5318d6f392072",
+      "file:size": 76394,
+      "file:checksum": "12201187e70659a4a799f9c7dac217d9288052e8f7266387b715ad72c7f2a02792c4",
       "description": "STAC GeoParquet copy of every item in this collection, one row per tile. The item JSON is normative."
     }
   },
@@ -3302,5 +3305,5 @@
       "title": "Pekel et al. (2016), Nature 540, 418-422"
     }
   ],
-  "updated": "2026-11-24T10:44:59Z"
+  "updated": "2026-11-24T10:55:48Z"
 }

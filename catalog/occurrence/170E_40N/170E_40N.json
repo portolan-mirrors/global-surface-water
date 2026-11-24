@@ -707,6 +707,7 @@
       "href": "./170E_40N.tif",
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "title": "Water occurrence (170E_40N)",
+      "description": "Upstream tile 170E_40N, byte-identical; 40000 x 40000 px at 0.00025°, uint8, 255 = no data (no NoData tag in the file).",
       "roles": [
         "data"
       ],

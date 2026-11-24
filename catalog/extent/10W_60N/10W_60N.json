@@ -113,6 +113,7 @@
       "href": "./10W_60N.tif",
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "title": "Maximum water extent (10W_60N)",
+      "description": "Upstream tile 10W_60N, byte-identical; 40000 x 40000 px at 0.00025°, uint8, 255 = no data (no NoData tag in the file).",
       "roles": [
         "data"
       ],

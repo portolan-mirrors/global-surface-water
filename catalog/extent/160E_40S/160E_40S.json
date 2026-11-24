@@ -113,6 +113,7 @@
       "href": "./160E_40S.tif",
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "title": "Maximum water extent (160E_40S)",
+      "description": "Upstream tile 160E_40S, byte-identical; 40000 x 40000 px at 0.00025°, uint8, 255 = no data (no NoData tag in the file).",
       "roles": [
         "data"
       ],

@@ -179,6 +179,7 @@
       "href": "./120W_40S.tif",
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "title": "Seasonality (120W_40S)",
+      "description": "Upstream tile 120W_40S, byte-identical; 40000 x 40000 px at 0.00025°, uint8, 255 = no data (no NoData tag in the file).",
       "roles": [
         "data"
       ],

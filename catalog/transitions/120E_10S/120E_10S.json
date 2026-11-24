@@ -167,6 +167,7 @@
       "href": "./120E_10S.tif",
       "type": "image/tiff; application=geotiff; profile=cloud-optimized",
       "title": "Water transitions (120E_10S)",
+      "description": "Upstream tile 120E_10S, byte-identical; 40000 x 40000 px at 0.00025°, uint8, 255 = no data (no NoData tag in the file).",
       "roles": [
         "data"
       ],

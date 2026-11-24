@@ -759,6 +759,8 @@
         "visual"
       ],
       "file:size": 222986629,
+      "start_datetime": "1984-03-16T00:00:00Z",
+      "end_datetime": "2024-12-31T23:59:59Z",
       "proj:code": "EPSG:4326",
       "proj:shape": [
         35000,
@@ -816,6 +818,7 @@
       "href": "./style.json",
       "type": "application/vnd.mapbox.style+json",
       "title": "Water recurrence (Data Users Guide colours)",
+      "description": "MapLibre style over the global overview COG (cog:// protocol), with the Data Users Guide colours; not water and nodata are transparent.",
       "roles": [
         "style",
         "default"
@@ -839,8 +842,8 @@
       "roles": [
         "collection-mirror"
       ],
-      "file:size": 119268,
-      "file:checksum": "122022e9a66ee16484e22eaf9445224be7dcc2afec145ee79fcd29559ecfdeeb3636",
+      "file:size": 125023,
+      "file:checksum": "1220bc4137f996d1b18978def2c03d03db6827bff3a5af7f721c0a6779ac18ecb0df",
       "description": "STAC GeoParquet copy of every item in this collection, one row per tile. The item JSON is normative."
     }
   },
@@ -3910,5 +3913,5 @@
       "title": "Pekel et al. (2016), Nature 540, 418-422"
     }
   ],
-  "updated": "2026-11-24T10:44:59Z"
+  "updated": "2026-11-24T10:55:48Z"
 }

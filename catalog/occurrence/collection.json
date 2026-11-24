@@ -759,6 +759,8 @@
         "visual"
       ],
       "file:size": 194916846,
+      "start_datetime": "1984-03-16T00:00:00Z",
+      "end_datetime": "2024-12-31T23:59:59Z",
       "proj:code": "EPSG:4326",
       "proj:shape": [
         35000,
@@ -816,6 +818,7 @@
       "href": "./style.json",
       "type": "application/vnd.mapbox.style+json",
       "title": "Water occurrence (Data Users Guide colours)",
+      "description": "MapLibre style over the global overview COG (cog:// protocol), with the Data Users Guide colours; not water and nodata are transparent.",
       "roles": [
         "style",
         "default"
@@ -839,8 +842,8 @@
       "roles": [
         "collection-mirror"
       ],
-      "file:size": 118925,
-      "file:checksum": "1220529b382f395f16808421f57855b15d817a686cafa738bd29c6926a0a9da59bae",
+      "file:size": 124680,
+      "file:checksum": "1220e58ee4e541e2ff2c019553640ab235705b6b6fde222ad06777cfd1e092914030",
       "description": "STAC GeoParquet copy of every item in this collection, one row per tile. The item JSON is normative."
     }
   },
@@ -3910,5 +3913,5 @@
       "title": "Pekel et al. (2016), Nature 540, 418-422"
     }
   ],
-  "updated": "2026-11-24T10:44:59Z"
+  "updated": "2026-11-24T10:55:48Z"
 }

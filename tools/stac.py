@@ -141,6 +141,7 @@ def item(cdir, key, t, src, size):
         ],
         "assets": {
             "data": {"href": f"./{t}.tif", "type": COG, "title": f"{p['title']} ({t})",
+                     "description": f"Upstream tile {t}, byte-identical; 40000 x 40000 px at 0.00025°, uint8, 255 = no data (no NoData tag in the file).",
                      "roles": ["data"], "file:size": tif.stat().st_size, **classified(key),
                      "bands": [band(key)]},
             "source": {"href": f"{UPSTREAM}/{src}", "type": COG, "title": "Upstream original (CloudFerro)",
@@ -204,12 +205,15 @@ def collection(cat, key, tiles, root_meta, now):
             "description": (f"Mosaic of all tiles resampled to 0.004° with `{RESAMPLING[key]}`. "
                             "For maps of the whole world; use the item tiles for analysis."),
             "roles": ["overview", "visual"], "file:size": ov.stat().st_size,
+            "start_datetime": lo, "end_datetime": hi,
             "proj:code": "EPSG:4326", "proj:shape": [35000, 90000],
             "proj:transform": [0.004, 0, -180, 0, -0.004, 80], **classified(key), "bands": [band(key)],
         }
         style(cdir, key)
         assets["style"] = {"href": "./style.json", "type": "application/vnd.mapbox.style+json",
                            "title": f"{p['title']} (Data Users Guide colours)",
+                           "description": "MapLibre style over the global overview COG (cog:// protocol), with "
+                                          "the Data Users Guide colours; not water and nodata are transparent.",
                            "roles": ["style", "default"], "file:size": (cdir / "style.json").stat().st_size}
     th = cdir / "thumbnail.png"
     if th.exists():
