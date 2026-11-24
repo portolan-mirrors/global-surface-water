@@ -1,0 +1,10 @@
+# Written by tools/stac.py from tools/products.py. Edit those, not this file.
+title: Maximum water extent
+description: 'Every location ever detected as water, 1984 to 2024. From the [GSW v1.5 Data Users Guide](https://storage.googleapis.com/water-world/downloads_ancillary/DataUsersGuidev2024_v.5.pdf):
+  "The Maximum Water Extent provides information on all the locations ever detected as water over the
+  41-year period. It is the union of all the other datasets." The collection holds the 504 upstream 10°
+  × 10° tiles as items, copied byte for byte (0.00025° grid, EPSG:4326, uint8, nodata 255), and one global
+  overview COG at 0.004° for display. Read [AGENTS.md](AGENTS.md) for access patterns.'
+processing_notes: 'Tiles copied unchanged from `https://s3.waw4-1.cloudferro.com/swift/v1/global-surface-water/download2024/Aggregated/VER1-5/extent/`.
+  The overview (`extent-overview.tif`) resamples each tile from the full-resolution pixels with `max`
+  to 0.004°, mosaics them, and sets nodata 255. Coverage: 1984-03-16 to 2024-12-31.'

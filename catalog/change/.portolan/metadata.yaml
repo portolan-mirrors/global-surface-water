@@ -1,0 +1,13 @@
+# Written by tools/stac.py from tools/products.py. Edit those, not this file.
+title: Occurrence change intensity
+description: 'Change in water occurrence between 1984-1999 and 2000-2024, from homologous months. 100
+  is no change. From the [GSW v1.5 Data Users Guide](https://storage.googleapis.com/water-world/downloads_ancillary/DataUsersGuidev2024_v.5.pdf):
+  "Change in water occurrence intensity between two epochs (16 March 1984 to 31 December 1999, and 1 January
+  2000 to 31 December 2024) was also produced. This is derived from homologous pairs of months (that is,
+  the same months contain valid observations in both epochs). [...] Areas where there are no pairs of
+  homologue months could not be mapped." The collection holds the 504 upstream 10° × 10° tiles as items,
+  copied byte for byte (0.00025° grid, EPSG:4326, uint8, nodata 255), and one global overview COG at 0.004°
+  for display. Read [AGENTS.md](AGENTS.md) for access patterns.'
+processing_notes: 'Tiles copied unchanged from `https://s3.waw4-1.cloudferro.com/swift/v1/global-surface-water/download2024/Aggregated/VER1-5/change/`.
+  The overview (`change-overview.tif`) resamples each tile from the full-resolution pixels with `mode`
+  to 0.004°, mosaics them, and sets nodata 255. Coverage: 1984-03-16 to 2024-12-31.'

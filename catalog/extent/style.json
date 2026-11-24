@@ -1,0 +1,38 @@
+{
+  "version": 8,
+  "name": "Maximum water extent",
+  "metadata": {
+    "portolan:description": "Maximum water extent from the global overview COG, in the Data Users Guide colours. Not water and nodata are transparent. Needs maplibre-cog-protocol for cog:// sources."
+  },
+  "sources": {
+    "basemap": {
+      "type": "raster",
+      "tileSize": 256,
+      "attribution": "Esri, HERE, Garmin, (c) OpenStreetMap contributors",
+      "tiles": [
+        "https://services.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}"
+      ]
+    },
+    "extent": {
+      "type": "raster",
+      "url": "cog://https://data.source.coop/portolan-mirrors/global-surface-water/extent/extent-overview.tif",
+      "tileSize": 256,
+      "attribution": "Source: EC JRC/Google"
+    }
+  },
+  "layers": [
+    {
+      "id": "basemap",
+      "type": "raster",
+      "source": "basemap"
+    },
+    {
+      "id": "extent",
+      "type": "raster",
+      "source": "extent",
+      "paint": {
+        "raster-resampling": "nearest"
+      }
+    }
+  ]
+}

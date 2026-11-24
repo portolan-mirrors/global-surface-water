@@ -1,0 +1,3468 @@
+{
+  "type": "Collection",
+  "id": "transitions",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/raster/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/classification/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/render/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/item-assets/v1.0.0/schema.json",
+    "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json"
+  ],
+  "title": "Water transitions",
+  "description": "Change in seasonality between the first and last year of observation: ten classes of water transition. From the [GSW v1.5 Data Users Guide](https://storage.googleapis.com/water-world/downloads_ancillary/DataUsersGuidev2024_v.5.pdf): \"The Transitions map provides information on the change in seasonality between the first and last years and captures changes between the three classes of not water, seasonal water and permanent water. [...] These conversions refer to changes in state from the beginning and end of the time series; they do not describe what happened in the intervening years.\" The collection holds the 504 upstream 10° × 10° tiles as items, copied byte for byte (0.00025° grid, EPSG:4326, uint8, nodata 255), and one global overview COG at 0.004° for display. Read [AGENTS.md](AGENTS.md) for access patterns.",
+  "license": "CC-BY-4.0",
+  "providers": [
+    {
+      "name": "European Commission Joint Research Centre (JRC)",
+      "roles": [
+        "producer",
+        "licensor"
+      ],
+      "url": "https://global-surface-water.appspot.com/",
+      "description": "Produced the Global Surface Water datasets under the Copernicus Programme, with Google."
+    },
+    {
+      "name": "Google",
+      "roles": [
+        "producer",
+        "processor"
+      ],
+      "url": "https://earthengine.google.com/",
+      "description": "Co-produced the datasets with the JRC; the processing ran on Google Earth Engine (Pekel et al. 2016)."
+    },
+    {
+      "name": "Portolan Mirrors",
+      "roles": [
+        "host"
+      ],
+      "url": "https://source.coop/portolan-mirrors/global-surface-water",
+      "description": "Maintains this Portolan mirror: the tile copies, global overview COGs, STAC metadata, styles, thumbnails, and documentation."
+    }
+  ],
+  "extent": {
+    "spatial": {
+      "bbox": [
+        [
+          -180,
+          -60,
+          180,
+          80
+        ]
+      ]
+    },
+    "temporal": {
+      "interval": [
+        [
+          "1984-03-16T00:00:00Z",
+          "2024-12-31T23:59:59Z"
+        ]
+      ]
+    }
+  },
+  "summaries": {
+    "proj:code": [
+      "EPSG:4326"
+    ],
+    "raster:spatial_resolution": [
+      0.00025
+    ]
+  },
+  "item_assets": {
+    "data": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "data"
+      ],
+      "title": "Water transitions",
+      "nodata": 255,
+      "classification:classes": [
+        {
+          "value": 0,
+          "name": "not_water",
+          "title": "Not water",
+          "color_hint": "FFFFFF"
+        },
+        {
+          "value": 1,
+          "name": "permanent",
+          "title": "Permanent",
+          "color_hint": "0000FF"
+        },
+        {
+          "value": 2,
+          "name": "new_permanent",
+          "title": "New permanent",
+          "color_hint": "22B14C"
+        },
+        {
+          "value": 3,
+          "name": "lost_permanent",
+          "title": "Lost permanent",
+          "color_hint": "D1102D"
+        },
+        {
+          "value": 4,
+          "name": "seasonal",
+          "title": "Seasonal",
+          "color_hint": "99D9EA"
+        },
+        {
+          "value": 5,
+          "name": "new_seasonal",
+          "title": "New seasonal",
+          "color_hint": "B5E61D"
+        },
+        {
+          "value": 6,
+          "name": "lost_seasonal",
+          "title": "Lost seasonal",
+          "color_hint": "E6A1AA"
+        },
+        {
+          "value": 7,
+          "name": "seasonal_to_permanent",
+          "title": "Seasonal to permanent",
+          "color_hint": "FF7F27"
+        },
+        {
+          "value": 8,
+          "name": "permanent_to_seasonal",
+          "title": "Permanent to seasonal",
+          "color_hint": "FFC90E"
+        },
+        {
+          "value": 9,
+          "name": "ephemeral_permanent",
+          "title": "Ephemeral permanent",
+          "color_hint": "7F7F7F"
+        },
+        {
+          "value": 10,
+          "name": "ephemeral_seasonal",
+          "title": "Ephemeral seasonal",
+          "color_hint": "C3C3C3"
+        },
+        {
+          "value": 255,
+          "name": "no_data",
+          "title": "No data",
+          "color_hint": "CCCCCC",
+          "nodata": true
+        }
+      ],
+      "bands": [
+        {
+          "name": "transition",
+          "description": "Change in seasonality between the first and last year of observation: ten classes of water transition.",
+          "data_type": "uint8",
+          "nodata": 255,
+          "raster:bits_per_sample": 8,
+          "raster:sampling": "area"
+        }
+      ]
+    },
+    "source": {
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "roles": [
+        "source"
+      ],
+      "title": "Upstream original (CloudFerro)"
+    }
+  },
+  "renders": {
+    "default": {
+      "title": "Water transitions",
+      "assets": [
+        "overview"
+      ],
+      "nodata": 255,
+      "colormap": {
+        "0": [
+          255,
+          255,
+          255,
+          0
+        ],
+        "1": [
+          0,
+          0,
+          255,
+          255
+        ],
+        "2": [
+          34,
+          177,
+          76,
+          255
+        ],
+        "3": [
+          209,
+          16,
+          45,
+          255
+        ],
+        "4": [
+          153,
+          217,
+          234,
+          255
+        ],
+        "5": [
+          181,
+          230,
+          29,
+          255
+        ],
+        "6": [
+          230,
+          161,
+          170,
+          255
+        ],
+        "7": [
+          255,
+          127,
+          39,
+          255
+        ],
+        "8": [
+          255,
+          201,
+          14,
+          255
+        ],
+        "9": [
+          127,
+          127,
+          127,
+          255
+        ],
+        "10": [
+          195,
+          195,
+          195,
+          255
+        ],
+        "255": [
+          204,
+          204,
+          204,
+          0
+        ]
+      }
+    }
+  },
+  "assets": {
+    "overview": {
+      "href": "./transitions-overview.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "Water transitions: global overview (0.004°)",
+      "description": "Mosaic of all tiles resampled to 0.004° with `mode`. For maps of the whole world; use the item tiles for analysis.",
+      "roles": [
+        "overview",
+        "visual"
+      ],
+      "file:size": 42826596,
+      "proj:code": "EPSG:4326",
+      "proj:shape": [
+        35000,
+        90000
+      ],
+      "proj:transform": [
+        0.004,
+        0,
+        -180,
+        0,
+        -0.004,
+        80
+      ],
+      "nodata": 255,
+      "classification:classes": [
+        {
+          "value": 0,
+          "name": "not_water",
+          "title": "Not water",
+          "color_hint": "FFFFFF"
+        },
+        {
+          "value": 1,
+          "name": "permanent",
+          "title": "Permanent",
+          "color_hint": "0000FF"
+        },
+        {
+          "value": 2,
+          "name": "new_permanent",
+          "title": "New permanent",
+          "color_hint": "22B14C"
+        },
+        {
+          "value": 3,
+          "name": "lost_permanent",
+          "title": "Lost permanent",
+          "color_hint": "D1102D"
+        },
+        {
+          "value": 4,
+          "name": "seasonal",
+          "title": "Seasonal",
+          "color_hint": "99D9EA"
+        },
+        {
+          "value": 5,
+          "name": "new_seasonal",
+          "title": "New seasonal",
+          "color_hint": "B5E61D"
+        },
+        {
+          "value": 6,
+          "name": "lost_seasonal",
+          "title": "Lost seasonal",
+          "color_hint": "E6A1AA"
+        },
+        {
+          "value": 7,
+          "name": "seasonal_to_permanent",
+          "title": "Seasonal to permanent",
+          "color_hint": "FF7F27"
+        },
+        {
+          "value": 8,
+          "name": "permanent_to_seasonal",
+          "title": "Permanent to seasonal",
+          "color_hint": "FFC90E"
+        },
+        {
+          "value": 9,
+          "name": "ephemeral_permanent",
+          "title": "Ephemeral permanent",
+          "color_hint": "7F7F7F"
+        },
+        {
+          "value": 10,
+          "name": "ephemeral_seasonal",
+          "title": "Ephemeral seasonal",
+          "color_hint": "C3C3C3"
+        },
+        {
+          "value": 255,
+          "name": "no_data",
+          "title": "No data",
+          "color_hint": "CCCCCC",
+          "nodata": true
+        }
+      ],
+      "bands": [
+        {
+          "name": "transition",
+          "description": "Change in seasonality between the first and last year of observation: ten classes of water transition.",
+          "data_type": "uint8",
+          "nodata": 255,
+          "raster:bits_per_sample": 8,
+          "raster:sampling": "area"
+        }
+      ]
+    },
+    "style": {
+      "href": "./style.json",
+      "type": "application/vnd.mapbox.style+json",
+      "title": "Water transitions (Data Users Guide colours)",
+      "roles": [
+        "style",
+        "default"
+      ],
+      "file:size": 1084
+    },
+    "thumbnail": {
+      "href": "./thumbnail.png",
+      "type": "image/png",
+      "title": "Thumbnail",
+      "description": "Water transitions, whole layer, over Esri World Light Gray. Rendered by tools/make_thumbs.py.",
+      "roles": [
+        "thumbnail"
+      ],
+      "file:size": 108896
+    },
+    "geoparquet-items": {
+      "href": "./items.parquet",
+      "type": "application/vnd.apache.parquet",
+      "title": "Item index",
+      "roles": [
+        "collection-mirror"
+      ],
+      "file:size": 76668,
+      "file:checksum": "12203c08e9abd11d8abc92328f42099e4376a088dcfa51aee498955189233a0db802",
+      "description": "STAC GeoParquet copy of every item in this collection, one row per tile. The item JSON is normative."
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "item",
+      "href": "./0E_0N/0E_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 0E_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./0E_10N/0E_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 0E_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./0E_10S/0E_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 0E_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./0E_20N/0E_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 0E_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./0E_20S/0E_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 0E_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./0E_30N/0E_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 0E_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./0E_30S/0E_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 0E_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./0E_40N/0E_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 0E_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./0E_40S/0E_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 0E_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./0E_50N/0E_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 0E_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./0E_50S/0E_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 0E_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./0E_60N/0E_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 0E_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./0E_70N/0E_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 0E_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./0E_80N/0E_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 0E_80N"
+    },
+    {
+      "rel": "item",
+      "href": "./100E_0N/100E_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 100E_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./100E_10N/100E_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 100E_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./100E_10S/100E_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 100E_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./100E_20N/100E_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 100E_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./100E_20S/100E_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 100E_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./100E_30N/100E_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 100E_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./100E_30S/100E_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 100E_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./100E_40N/100E_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 100E_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./100E_40S/100E_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 100E_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./100E_50N/100E_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 100E_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./100E_50S/100E_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 100E_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./100E_60N/100E_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 100E_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./100E_70N/100E_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 100E_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./100E_80N/100E_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 100E_80N"
+    },
+    {
+      "rel": "item",
+      "href": "./100W_0N/100W_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 100W_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./100W_10N/100W_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 100W_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./100W_10S/100W_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 100W_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./100W_20N/100W_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 100W_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./100W_20S/100W_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 100W_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./100W_30N/100W_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 100W_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./100W_30S/100W_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 100W_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./100W_40N/100W_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 100W_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./100W_40S/100W_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 100W_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./100W_50N/100W_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 100W_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./100W_50S/100W_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 100W_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./100W_60N/100W_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 100W_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./100W_70N/100W_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 100W_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./100W_80N/100W_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 100W_80N"
+    },
+    {
+      "rel": "item",
+      "href": "./10E_0N/10E_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 10E_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./10E_10N/10E_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 10E_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./10E_10S/10E_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 10E_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./10E_20N/10E_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 10E_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./10E_20S/10E_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 10E_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./10E_30N/10E_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 10E_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./10E_30S/10E_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 10E_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./10E_40N/10E_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 10E_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./10E_40S/10E_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 10E_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./10E_50N/10E_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 10E_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./10E_50S/10E_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 10E_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./10E_60N/10E_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 10E_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./10E_70N/10E_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 10E_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./10E_80N/10E_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 10E_80N"
+    },
+    {
+      "rel": "item",
+      "href": "./10W_0N/10W_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 10W_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./10W_10N/10W_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 10W_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./10W_10S/10W_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 10W_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./10W_20N/10W_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 10W_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./10W_20S/10W_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 10W_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./10W_30N/10W_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 10W_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./10W_30S/10W_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 10W_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./10W_40N/10W_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 10W_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./10W_40S/10W_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 10W_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./10W_50N/10W_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 10W_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./10W_50S/10W_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 10W_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./10W_60N/10W_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 10W_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./10W_70N/10W_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 10W_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./10W_80N/10W_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 10W_80N"
+    },
+    {
+      "rel": "item",
+      "href": "./110E_0N/110E_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 110E_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./110E_10N/110E_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 110E_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./110E_10S/110E_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 110E_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./110E_20N/110E_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 110E_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./110E_20S/110E_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 110E_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./110E_30N/110E_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 110E_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./110E_30S/110E_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 110E_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./110E_40N/110E_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 110E_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./110E_40S/110E_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 110E_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./110E_50N/110E_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 110E_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./110E_50S/110E_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 110E_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./110E_60N/110E_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 110E_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./110E_70N/110E_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 110E_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./110E_80N/110E_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 110E_80N"
+    },
+    {
+      "rel": "item",
+      "href": "./110W_0N/110W_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 110W_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./110W_10N/110W_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 110W_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./110W_10S/110W_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 110W_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./110W_20N/110W_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 110W_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./110W_20S/110W_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 110W_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./110W_30N/110W_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 110W_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./110W_30S/110W_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 110W_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./110W_40N/110W_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 110W_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./110W_40S/110W_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 110W_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./110W_50N/110W_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 110W_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./110W_50S/110W_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 110W_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./110W_60N/110W_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 110W_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./110W_70N/110W_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 110W_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./110W_80N/110W_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 110W_80N"
+    },
+    {
+      "rel": "item",
+      "href": "./120E_0N/120E_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 120E_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./120E_10N/120E_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 120E_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./120E_10S/120E_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 120E_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./120E_20N/120E_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 120E_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./120E_20S/120E_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 120E_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./120E_30N/120E_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 120E_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./120E_30S/120E_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 120E_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./120E_40N/120E_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 120E_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./120E_40S/120E_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 120E_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./120E_50N/120E_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 120E_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./120E_50S/120E_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 120E_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./120E_60N/120E_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 120E_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./120E_70N/120E_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 120E_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./120E_80N/120E_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 120E_80N"
+    },
+    {
+      "rel": "item",
+      "href": "./120W_0N/120W_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 120W_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./120W_10N/120W_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 120W_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./120W_10S/120W_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 120W_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./120W_20N/120W_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 120W_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./120W_20S/120W_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 120W_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./120W_30N/120W_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 120W_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./120W_30S/120W_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 120W_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./120W_40N/120W_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 120W_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./120W_40S/120W_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 120W_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./120W_50N/120W_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 120W_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./120W_50S/120W_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 120W_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./120W_60N/120W_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 120W_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./120W_70N/120W_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 120W_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./120W_80N/120W_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 120W_80N"
+    },
+    {
+      "rel": "item",
+      "href": "./130E_0N/130E_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 130E_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./130E_10N/130E_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 130E_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./130E_10S/130E_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 130E_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./130E_20N/130E_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 130E_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./130E_20S/130E_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 130E_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./130E_30N/130E_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 130E_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./130E_30S/130E_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 130E_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./130E_40N/130E_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 130E_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./130E_40S/130E_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 130E_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./130E_50N/130E_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 130E_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./130E_50S/130E_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 130E_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./130E_60N/130E_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 130E_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./130E_70N/130E_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 130E_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./130E_80N/130E_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 130E_80N"
+    },
+    {
+      "rel": "item",
+      "href": "./130W_0N/130W_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 130W_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./130W_10N/130W_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 130W_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./130W_10S/130W_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 130W_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./130W_20N/130W_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 130W_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./130W_20S/130W_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 130W_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./130W_30N/130W_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 130W_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./130W_30S/130W_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 130W_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./130W_40N/130W_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 130W_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./130W_40S/130W_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 130W_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./130W_50N/130W_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 130W_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./130W_50S/130W_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 130W_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./130W_60N/130W_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 130W_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./130W_70N/130W_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 130W_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./130W_80N/130W_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 130W_80N"
+    },
+    {
+      "rel": "item",
+      "href": "./140E_0N/140E_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 140E_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./140E_10N/140E_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 140E_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./140E_10S/140E_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 140E_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./140E_20N/140E_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 140E_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./140E_20S/140E_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 140E_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./140E_30N/140E_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 140E_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./140E_30S/140E_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 140E_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./140E_40N/140E_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 140E_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./140E_40S/140E_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 140E_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./140E_50N/140E_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 140E_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./140E_50S/140E_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 140E_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./140E_60N/140E_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 140E_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./140E_70N/140E_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 140E_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./140E_80N/140E_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 140E_80N"
+    },
+    {
+      "rel": "item",
+      "href": "./140W_0N/140W_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 140W_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./140W_10N/140W_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 140W_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./140W_10S/140W_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 140W_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./140W_20N/140W_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 140W_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./140W_20S/140W_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 140W_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./140W_30N/140W_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 140W_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./140W_30S/140W_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 140W_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./140W_40N/140W_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 140W_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./140W_40S/140W_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 140W_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./140W_50N/140W_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 140W_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./140W_50S/140W_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 140W_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./140W_60N/140W_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 140W_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./140W_70N/140W_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 140W_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./140W_80N/140W_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 140W_80N"
+    },
+    {
+      "rel": "item",
+      "href": "./150E_0N/150E_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 150E_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./150E_10N/150E_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 150E_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./150E_10S/150E_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 150E_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./150E_20N/150E_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 150E_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./150E_20S/150E_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 150E_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./150E_30N/150E_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 150E_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./150E_30S/150E_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 150E_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./150E_40N/150E_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 150E_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./150E_40S/150E_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 150E_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./150E_50N/150E_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 150E_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./150E_50S/150E_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 150E_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./150E_60N/150E_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 150E_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./150E_70N/150E_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 150E_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./150E_80N/150E_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 150E_80N"
+    },
+    {
+      "rel": "item",
+      "href": "./150W_0N/150W_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 150W_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./150W_10N/150W_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 150W_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./150W_10S/150W_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 150W_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./150W_20N/150W_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 150W_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./150W_20S/150W_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 150W_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./150W_30N/150W_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 150W_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./150W_30S/150W_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 150W_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./150W_40N/150W_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 150W_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./150W_40S/150W_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 150W_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./150W_50N/150W_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 150W_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./150W_50S/150W_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 150W_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./150W_60N/150W_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 150W_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./150W_70N/150W_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 150W_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./150W_80N/150W_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 150W_80N"
+    },
+    {
+      "rel": "item",
+      "href": "./160E_0N/160E_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 160E_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./160E_10N/160E_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 160E_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./160E_10S/160E_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 160E_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./160E_20N/160E_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 160E_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./160E_20S/160E_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 160E_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./160E_30N/160E_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 160E_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./160E_30S/160E_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 160E_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./160E_40N/160E_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 160E_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./160E_40S/160E_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 160E_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./160E_50N/160E_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 160E_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./160E_50S/160E_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 160E_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./160E_60N/160E_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 160E_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./160E_70N/160E_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 160E_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./160E_80N/160E_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 160E_80N"
+    },
+    {
+      "rel": "item",
+      "href": "./160W_0N/160W_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 160W_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./160W_10N/160W_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 160W_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./160W_10S/160W_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 160W_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./160W_20N/160W_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 160W_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./160W_20S/160W_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 160W_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./160W_30N/160W_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 160W_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./160W_30S/160W_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 160W_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./160W_40N/160W_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 160W_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./160W_40S/160W_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 160W_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./160W_50N/160W_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 160W_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./160W_50S/160W_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 160W_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./160W_60N/160W_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 160W_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./160W_70N/160W_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 160W_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./160W_80N/160W_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 160W_80N"
+    },
+    {
+      "rel": "item",
+      "href": "./170E_0N/170E_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 170E_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./170E_10N/170E_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 170E_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./170E_10S/170E_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 170E_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./170E_20N/170E_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 170E_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./170E_20S/170E_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 170E_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./170E_30N/170E_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 170E_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./170E_30S/170E_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 170E_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./170E_40N/170E_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 170E_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./170E_40S/170E_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 170E_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./170E_50N/170E_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 170E_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./170E_50S/170E_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 170E_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./170E_60N/170E_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 170E_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./170E_70N/170E_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 170E_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./170E_80N/170E_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 170E_80N"
+    },
+    {
+      "rel": "item",
+      "href": "./170W_0N/170W_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 170W_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./170W_10N/170W_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 170W_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./170W_10S/170W_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 170W_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./170W_20N/170W_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 170W_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./170W_20S/170W_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 170W_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./170W_30N/170W_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 170W_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./170W_30S/170W_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 170W_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./170W_40N/170W_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 170W_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./170W_40S/170W_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 170W_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./170W_50N/170W_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 170W_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./170W_50S/170W_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 170W_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./170W_60N/170W_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 170W_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./170W_70N/170W_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 170W_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./170W_80N/170W_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 170W_80N"
+    },
+    {
+      "rel": "item",
+      "href": "./180W_0N/180W_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 180W_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./180W_10N/180W_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 180W_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./180W_10S/180W_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 180W_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./180W_20N/180W_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 180W_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./180W_20S/180W_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 180W_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./180W_30N/180W_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 180W_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./180W_30S/180W_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 180W_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./180W_40N/180W_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 180W_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./180W_40S/180W_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 180W_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./180W_50N/180W_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 180W_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./180W_50S/180W_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 180W_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./180W_60N/180W_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 180W_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./180W_70N/180W_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 180W_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./180W_80N/180W_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 180W_80N"
+    },
+    {
+      "rel": "item",
+      "href": "./20E_0N/20E_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 20E_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./20E_10N/20E_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 20E_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./20E_10S/20E_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 20E_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./20E_20N/20E_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 20E_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./20E_20S/20E_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 20E_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./20E_30N/20E_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 20E_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./20E_30S/20E_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 20E_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./20E_40N/20E_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 20E_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./20E_40S/20E_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 20E_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./20E_50N/20E_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 20E_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./20E_50S/20E_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 20E_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./20E_60N/20E_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 20E_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./20E_70N/20E_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 20E_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./20E_80N/20E_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 20E_80N"
+    },
+    {
+      "rel": "item",
+      "href": "./20W_0N/20W_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 20W_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./20W_10N/20W_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 20W_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./20W_10S/20W_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 20W_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./20W_20N/20W_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 20W_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./20W_20S/20W_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 20W_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./20W_30N/20W_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 20W_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./20W_30S/20W_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 20W_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./20W_40N/20W_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 20W_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./20W_40S/20W_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 20W_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./20W_50N/20W_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 20W_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./20W_50S/20W_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 20W_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./20W_60N/20W_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 20W_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./20W_70N/20W_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 20W_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./20W_80N/20W_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 20W_80N"
+    },
+    {
+      "rel": "item",
+      "href": "./30E_0N/30E_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 30E_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./30E_10N/30E_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 30E_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./30E_10S/30E_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 30E_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./30E_20N/30E_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 30E_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./30E_20S/30E_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 30E_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./30E_30N/30E_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 30E_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./30E_30S/30E_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 30E_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./30E_40N/30E_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 30E_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./30E_40S/30E_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 30E_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./30E_50N/30E_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 30E_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./30E_50S/30E_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 30E_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./30E_60N/30E_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 30E_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./30E_70N/30E_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 30E_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./30E_80N/30E_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 30E_80N"
+    },
+    {
+      "rel": "item",
+      "href": "./30W_0N/30W_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 30W_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./30W_10N/30W_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 30W_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./30W_10S/30W_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 30W_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./30W_20N/30W_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 30W_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./30W_20S/30W_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 30W_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./30W_30N/30W_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 30W_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./30W_30S/30W_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 30W_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./30W_40N/30W_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 30W_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./30W_40S/30W_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 30W_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./30W_50N/30W_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 30W_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./30W_50S/30W_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 30W_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./30W_60N/30W_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 30W_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./30W_70N/30W_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 30W_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./30W_80N/30W_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 30W_80N"
+    },
+    {
+      "rel": "item",
+      "href": "./40E_0N/40E_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 40E_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./40E_10N/40E_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 40E_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./40E_10S/40E_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 40E_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./40E_20N/40E_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 40E_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./40E_20S/40E_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 40E_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./40E_30N/40E_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 40E_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./40E_30S/40E_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 40E_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./40E_40N/40E_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 40E_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./40E_40S/40E_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 40E_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./40E_50N/40E_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 40E_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./40E_50S/40E_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 40E_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./40E_60N/40E_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 40E_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./40E_70N/40E_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 40E_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./40E_80N/40E_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 40E_80N"
+    },
+    {
+      "rel": "item",
+      "href": "./40W_0N/40W_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 40W_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./40W_10N/40W_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 40W_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./40W_10S/40W_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 40W_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./40W_20N/40W_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 40W_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./40W_20S/40W_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 40W_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./40W_30N/40W_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 40W_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./40W_30S/40W_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 40W_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./40W_40N/40W_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 40W_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./40W_40S/40W_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 40W_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./40W_50N/40W_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 40W_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./40W_50S/40W_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 40W_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./40W_60N/40W_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 40W_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./40W_70N/40W_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 40W_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./40W_80N/40W_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 40W_80N"
+    },
+    {
+      "rel": "item",
+      "href": "./50E_0N/50E_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 50E_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./50E_10N/50E_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 50E_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./50E_10S/50E_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 50E_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./50E_20N/50E_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 50E_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./50E_20S/50E_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 50E_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./50E_30N/50E_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 50E_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./50E_30S/50E_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 50E_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./50E_40N/50E_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 50E_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./50E_40S/50E_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 50E_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./50E_50N/50E_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 50E_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./50E_50S/50E_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 50E_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./50E_60N/50E_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 50E_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./50E_70N/50E_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 50E_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./50E_80N/50E_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 50E_80N"
+    },
+    {
+      "rel": "item",
+      "href": "./50W_0N/50W_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 50W_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./50W_10N/50W_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 50W_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./50W_10S/50W_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 50W_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./50W_20N/50W_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 50W_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./50W_20S/50W_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 50W_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./50W_30N/50W_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 50W_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./50W_30S/50W_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 50W_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./50W_40N/50W_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 50W_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./50W_40S/50W_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 50W_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./50W_50N/50W_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 50W_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./50W_50S/50W_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 50W_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./50W_60N/50W_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 50W_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./50W_70N/50W_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 50W_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./50W_80N/50W_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 50W_80N"
+    },
+    {
+      "rel": "item",
+      "href": "./60E_0N/60E_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 60E_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./60E_10N/60E_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 60E_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./60E_10S/60E_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 60E_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./60E_20N/60E_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 60E_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./60E_20S/60E_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 60E_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./60E_30N/60E_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 60E_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./60E_30S/60E_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 60E_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./60E_40N/60E_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 60E_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./60E_40S/60E_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 60E_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./60E_50N/60E_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 60E_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./60E_50S/60E_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 60E_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./60E_60N/60E_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 60E_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./60E_70N/60E_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 60E_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./60E_80N/60E_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 60E_80N"
+    },
+    {
+      "rel": "item",
+      "href": "./60W_0N/60W_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 60W_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./60W_10N/60W_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 60W_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./60W_10S/60W_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 60W_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./60W_20N/60W_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 60W_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./60W_20S/60W_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 60W_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./60W_30N/60W_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 60W_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./60W_30S/60W_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 60W_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./60W_40N/60W_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 60W_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./60W_40S/60W_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 60W_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./60W_50N/60W_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 60W_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./60W_50S/60W_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 60W_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./60W_60N/60W_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 60W_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./60W_70N/60W_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 60W_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./60W_80N/60W_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 60W_80N"
+    },
+    {
+      "rel": "item",
+      "href": "./70E_0N/70E_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 70E_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./70E_10N/70E_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 70E_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./70E_10S/70E_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 70E_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./70E_20N/70E_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 70E_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./70E_20S/70E_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 70E_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./70E_30N/70E_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 70E_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./70E_30S/70E_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 70E_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./70E_40N/70E_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 70E_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./70E_40S/70E_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 70E_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./70E_50N/70E_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 70E_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./70E_50S/70E_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 70E_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./70E_60N/70E_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 70E_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./70E_70N/70E_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 70E_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./70E_80N/70E_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 70E_80N"
+    },
+    {
+      "rel": "item",
+      "href": "./70W_0N/70W_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 70W_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./70W_10N/70W_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 70W_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./70W_10S/70W_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 70W_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./70W_20N/70W_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 70W_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./70W_20S/70W_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 70W_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./70W_30N/70W_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 70W_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./70W_30S/70W_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 70W_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./70W_40N/70W_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 70W_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./70W_40S/70W_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 70W_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./70W_50N/70W_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 70W_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./70W_50S/70W_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 70W_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./70W_60N/70W_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 70W_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./70W_70N/70W_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 70W_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./70W_80N/70W_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 70W_80N"
+    },
+    {
+      "rel": "item",
+      "href": "./80E_0N/80E_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 80E_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./80E_10N/80E_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 80E_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./80E_10S/80E_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 80E_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./80E_20N/80E_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 80E_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./80E_20S/80E_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 80E_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./80E_30N/80E_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 80E_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./80E_30S/80E_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 80E_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./80E_40N/80E_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 80E_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./80E_40S/80E_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 80E_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./80E_50N/80E_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 80E_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./80E_50S/80E_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 80E_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./80E_60N/80E_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 80E_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./80E_70N/80E_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 80E_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./80E_80N/80E_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 80E_80N"
+    },
+    {
+      "rel": "item",
+      "href": "./80W_0N/80W_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 80W_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./80W_10N/80W_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 80W_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./80W_10S/80W_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 80W_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./80W_20N/80W_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 80W_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./80W_20S/80W_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 80W_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./80W_30N/80W_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 80W_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./80W_30S/80W_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 80W_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./80W_40N/80W_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 80W_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./80W_40S/80W_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 80W_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./80W_50N/80W_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 80W_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./80W_50S/80W_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 80W_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./80W_60N/80W_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 80W_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./80W_70N/80W_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 80W_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./80W_80N/80W_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 80W_80N"
+    },
+    {
+      "rel": "item",
+      "href": "./90E_0N/90E_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 90E_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./90E_10N/90E_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 90E_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./90E_10S/90E_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 90E_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./90E_20N/90E_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 90E_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./90E_20S/90E_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 90E_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./90E_30N/90E_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 90E_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./90E_30S/90E_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 90E_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./90E_40N/90E_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 90E_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./90E_40S/90E_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 90E_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./90E_50N/90E_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 90E_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./90E_50S/90E_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 90E_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./90E_60N/90E_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 90E_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./90E_70N/90E_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 90E_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./90E_80N/90E_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 90E_80N"
+    },
+    {
+      "rel": "item",
+      "href": "./90W_0N/90W_0N.json",
+      "type": "application/geo+json",
+      "title": "Tile 90W_0N"
+    },
+    {
+      "rel": "item",
+      "href": "./90W_10N/90W_10N.json",
+      "type": "application/geo+json",
+      "title": "Tile 90W_10N"
+    },
+    {
+      "rel": "item",
+      "href": "./90W_10S/90W_10S.json",
+      "type": "application/geo+json",
+      "title": "Tile 90W_10S"
+    },
+    {
+      "rel": "item",
+      "href": "./90W_20N/90W_20N.json",
+      "type": "application/geo+json",
+      "title": "Tile 90W_20N"
+    },
+    {
+      "rel": "item",
+      "href": "./90W_20S/90W_20S.json",
+      "type": "application/geo+json",
+      "title": "Tile 90W_20S"
+    },
+    {
+      "rel": "item",
+      "href": "./90W_30N/90W_30N.json",
+      "type": "application/geo+json",
+      "title": "Tile 90W_30N"
+    },
+    {
+      "rel": "item",
+      "href": "./90W_30S/90W_30S.json",
+      "type": "application/geo+json",
+      "title": "Tile 90W_30S"
+    },
+    {
+      "rel": "item",
+      "href": "./90W_40N/90W_40N.json",
+      "type": "application/geo+json",
+      "title": "Tile 90W_40N"
+    },
+    {
+      "rel": "item",
+      "href": "./90W_40S/90W_40S.json",
+      "type": "application/geo+json",
+      "title": "Tile 90W_40S"
+    },
+    {
+      "rel": "item",
+      "href": "./90W_50N/90W_50N.json",
+      "type": "application/geo+json",
+      "title": "Tile 90W_50N"
+    },
+    {
+      "rel": "item",
+      "href": "./90W_50S/90W_50S.json",
+      "type": "application/geo+json",
+      "title": "Tile 90W_50S"
+    },
+    {
+      "rel": "item",
+      "href": "./90W_60N/90W_60N.json",
+      "type": "application/geo+json",
+      "title": "Tile 90W_60N"
+    },
+    {
+      "rel": "item",
+      "href": "./90W_70N/90W_70N.json",
+      "type": "application/geo+json",
+      "title": "Tile 90W_70N"
+    },
+    {
+      "rel": "item",
+      "href": "./90W_80N/90W_80N.json",
+      "type": "application/geo+json",
+      "title": "Tile 90W_80N"
+    },
+    {
+      "rel": "license",
+      "href": "https://creativecommons.org/licenses/by/4.0/",
+      "type": "text/html",
+      "title": "CC BY 4.0"
+    },
+    {
+      "rel": "via",
+      "href": "https://global-surface-water.appspot.com/download",
+      "type": "text/html",
+      "title": "Global Surface Water Explorer: Data Access"
+    },
+    {
+      "rel": "describedby",
+      "href": "./README.md",
+      "type": "text/markdown",
+      "title": "Human-readable documentation"
+    },
+    {
+      "rel": "agents",
+      "href": "./AGENTS.md",
+      "type": "text/markdown",
+      "title": "Agent/LLM usage guide"
+    },
+    {
+      "rel": "cite-as",
+      "href": "https://doi.org/10.1038/nature20584",
+      "type": "text/html",
+      "title": "Pekel et al. (2016), Nature 540, 418-422"
+    }
+  ],
+  "updated": "2026-11-24T10:44:59Z"
+}

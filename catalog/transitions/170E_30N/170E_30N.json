@@ -1,0 +1,273 @@
+{
+  "type": "Feature",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/raster/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/classification/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/render/v2.0.0/schema.json"
+  ],
+  "id": "170E_30N",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          170,
+          20
+        ],
+        [
+          180,
+          20
+        ],
+        [
+          180,
+          30
+        ],
+        [
+          170,
+          30
+        ],
+        [
+          170,
+          20
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    170,
+    20,
+    180,
+    30
+  ],
+  "properties": {
+    "title": "Water transitions, tile 170E_30N",
+    "description": "Water transitions for 10° × 10° tile 170E_30N (upper-left corner 170E, 30N).",
+    "datetime": null,
+    "start_datetime": "1984-03-16T00:00:00Z",
+    "end_datetime": "2024-12-31T23:59:59Z",
+    "proj:code": "EPSG:4326",
+    "proj:shape": [
+      40000,
+      40000
+    ],
+    "proj:transform": [
+      0.00025,
+      0,
+      170,
+      0,
+      -0.00025,
+      30
+    ],
+    "renders": {
+      "default": {
+        "title": "Water transitions",
+        "assets": [
+          "data"
+        ],
+        "nodata": 255,
+        "colormap": {
+          "0": [
+            255,
+            255,
+            255,
+            0
+          ],
+          "1": [
+            0,
+            0,
+            255,
+            255
+          ],
+          "2": [
+            34,
+            177,
+            76,
+            255
+          ],
+          "3": [
+            209,
+            16,
+            45,
+            255
+          ],
+          "4": [
+            153,
+            217,
+            234,
+            255
+          ],
+          "5": [
+            181,
+            230,
+            29,
+            255
+          ],
+          "6": [
+            230,
+            161,
+            170,
+            255
+          ],
+          "7": [
+            255,
+            127,
+            39,
+            255
+          ],
+          "8": [
+            255,
+            201,
+            14,
+            255
+          ],
+          "9": [
+            127,
+            127,
+            127,
+            255
+          ],
+          "10": [
+            195,
+            195,
+            195,
+            255
+          ],
+          "255": [
+            204,
+            204,
+            204,
+            0
+          ]
+        }
+      }
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../collection.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "collection",
+      "href": "../collection.json",
+      "type": "application/json"
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "./170E_30N.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "Water transitions (170E_30N)",
+      "roles": [
+        "data"
+      ],
+      "file:size": 514744,
+      "nodata": 255,
+      "classification:classes": [
+        {
+          "value": 0,
+          "name": "not_water",
+          "title": "Not water",
+          "color_hint": "FFFFFF"
+        },
+        {
+          "value": 1,
+          "name": "permanent",
+          "title": "Permanent",
+          "color_hint": "0000FF"
+        },
+        {
+          "value": 2,
+          "name": "new_permanent",
+          "title": "New permanent",
+          "color_hint": "22B14C"
+        },
+        {
+          "value": 3,
+          "name": "lost_permanent",
+          "title": "Lost permanent",
+          "color_hint": "D1102D"
+        },
+        {
+          "value": 4,
+          "name": "seasonal",
+          "title": "Seasonal",
+          "color_hint": "99D9EA"
+        },
+        {
+          "value": 5,
+          "name": "new_seasonal",
+          "title": "New seasonal",
+          "color_hint": "B5E61D"
+        },
+        {
+          "value": 6,
+          "name": "lost_seasonal",
+          "title": "Lost seasonal",
+          "color_hint": "E6A1AA"
+        },
+        {
+          "value": 7,
+          "name": "seasonal_to_permanent",
+          "title": "Seasonal to permanent",
+          "color_hint": "FF7F27"
+        },
+        {
+          "value": 8,
+          "name": "permanent_to_seasonal",
+          "title": "Permanent to seasonal",
+          "color_hint": "FFC90E"
+        },
+        {
+          "value": 9,
+          "name": "ephemeral_permanent",
+          "title": "Ephemeral permanent",
+          "color_hint": "7F7F7F"
+        },
+        {
+          "value": 10,
+          "name": "ephemeral_seasonal",
+          "title": "Ephemeral seasonal",
+          "color_hint": "C3C3C3"
+        },
+        {
+          "value": 255,
+          "name": "no_data",
+          "title": "No data",
+          "color_hint": "CCCCCC",
+          "nodata": true
+        }
+      ],
+      "bands": [
+        {
+          "name": "transition",
+          "description": "Change in seasonality between the first and last year of observation: ten classes of water transition.",
+          "data_type": "uint8",
+          "nodata": 255,
+          "raster:bits_per_sample": 8,
+          "raster:sampling": "area"
+        }
+      ]
+    },
+    "source": {
+      "href": "https://s3.waw4-1.cloudferro.com/swift/v1/global-surface-water/download2024/Aggregated/VER1-5/transitions/transitions_170E_30N_v1_5_2024.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "Upstream original (CloudFerro)",
+      "description": "The object this tile was copied from, byte for byte. The host sends no CORS headers.",
+      "roles": [
+        "source"
+      ],
+      "file:size": 514744
+    }
+  },
+  "collection": "transitions"
+}

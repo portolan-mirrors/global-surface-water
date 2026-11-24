@@ -1,0 +1,13 @@
+# Written by tools/stac.py from tools/products.py. Edit those, not this file.
+title: Water transitions
+description: 'Change in seasonality between the first and last year of observation: ten classes of water
+  transition. From the [GSW v1.5 Data Users Guide](https://storage.googleapis.com/water-world/downloads_ancillary/DataUsersGuidev2024_v.5.pdf):
+  "The Transitions map provides information on the change in seasonality between the first and last years
+  and captures changes between the three classes of not water, seasonal water and permanent water. [...]
+  These conversions refer to changes in state from the beginning and end of the time series; they do not
+  describe what happened in the intervening years." The collection holds the 504 upstream 10° × 10° tiles
+  as items, copied byte for byte (0.00025° grid, EPSG:4326, uint8, nodata 255), and one global overview
+  COG at 0.004° for display. Read [AGENTS.md](AGENTS.md) for access patterns.'
+processing_notes: 'Tiles copied unchanged from `https://s3.waw4-1.cloudferro.com/swift/v1/global-surface-water/download2024/Aggregated/VER1-5/transitions/`.
+  The overview (`transitions-overview.tif`) resamples each tile from the full-resolution pixels with `mode`
+  to 0.004°, mosaics them, and sets nodata 255. Coverage: 1984-03-16 to 2024-12-31.'

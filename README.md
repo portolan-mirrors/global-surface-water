@@ -1,92 +1,63 @@
-# Portolan Catalog Template
+# Global Surface Water Explorer v1.5: Portolan mirror
 
-A starting point for a [Portolan](https://www.portolan-sdi.org/) catalog whose
-metadata lives in git. Click **Use this template**, work through
-[SETUP.md](SETUP.md), and you have a repository whose CI validates every change
-before it publishes.
+Build scripts and STAC metadata for the Portolan mirror of the six aggregated
+layers of the JRC/Google [Global Surface Water Explorer](https://global-surface-water.appspot.com/)
+v1.5 (1984 to 2024): occurrence, occurrence change intensity, seasonality,
+recurrence, transitions, and maximum extent.
 
-**`catalog/` is the published catalog.** Everything in it is published.
-Everything outside it never is. That boundary is the whole publish contract,
-and `tools/publish.py` has no flag or config key that widens it.
+- Catalog: <https://data.source.coop/portolan-mirrors/global-surface-water/catalog.json>
+- Browse: <https://browser.portolan-sdi.org/#/external/data.source.coop/portolan-mirrors/global-surface-water/catalog.json>
+- Source Cooperative: <https://source.coop/portolan-mirrors/global-surface-water>
+- Request: [portolan-data#82](https://github.com/portolan-sdi/portolan-data/issues/82)
 
-## Three kinds of file
-
-| Kind | Where | Example |
-|---|---|---|
-| Tracked and published | inside `catalog/` | STAC JSON, `README.md`, `AGENTS.md`, thumbnails, logos |
-| Tracked, never published | outside `catalog/` | `tools/`, `tests/`, `docs/`, this README, `catalog.publish.yaml` |
-| Neither | gitignored | GeoParquet, COGs, PMTiles, credentials |
-
-The data lives in object storage next to the published metadata. The
-repository references it by URL and never stores it.
+Each layer is a collection of the 504 upstream 10° tiles, copied byte for
+byte from the CloudFerro bucket the download page links, plus one global
+overview COG at 0.004° for display. Data files live in object storage, never
+in git.
 
 ## Layout
 
 | Path | What it is |
 |---|---|
-| `catalog/` | The published tree, synced 1:1 to object storage |
-| `catalog.publish.yaml` | Where it publishes, and under what public URL |
-| `tools/publish.py` | The sync. Dry run by default |
-| `tools/upload_data.py` | The data upload. Dry run by default |
-| `tests/` | The gates CI runs on every pull request |
-| `docs/conformance.md` | Any validator finding this catalog accepts, and why |
-| `SETUP.md` | The checklist. Delete it when you are done |
+| `catalog/` | The published catalog. Data files under it are gitignored. |
+| `manifest/upstream.json` | Name, size, and hash of every upstream tile at build time. |
+| `tools/products.py` | Every per-layer fact (titles, value tables, colours), from the Data Users Guide. |
+| `tools/upstream.py` | Lists the upstream bucket; `--diff` and `--new-prefixes` detect changes. |
+| `tools/build.sh` | Downloads and checks the tiles (`fetch.py`), builds the overviews (`make_overview.py`). |
+| `tools/stac.sh` | Thumbnails, STAC JSON, item index, agent guides, READMEs. |
+| `tests/` | Gates CI runs on every PR, plus `test_agent_claims.py` for the guide recipes. |
 
-## Publish
+## Updating from upstream
 
-```bash
-python3 tools/publish.py            # dry run: what would change
-python3 tools/publish.py --confirm  # upload; needs AWS credentials
-```
-
-It never deletes. Removing a file from `catalog/` does not unpublish it, so
-delete the object yourself if that is what you meant.
-
-## Upload the data
-
-The data is too large for git, so it lives outside `catalog/`.
-`tools/upload_data.py` carries it to the same bucket prefix. Set `data_dir` in
-`catalog.publish.yaml` to the directory that holds it.
+`.github/workflows/upstream-check.yml` runs weekly. When the CloudFerro
+listing differs from `manifest/upstream.json`, or a new prefix appears on the
+bucket (a likely new release), it opens an issue titled "Upstream: GSWE tiles
+changed on CloudFerro". The rebuild is manual, because it moves about 40 GB.
+On a large machine (64 cores, 160 GB RAM, 100 GB disk), from a clone with the
+current catalog data in `catalog/`:
 
 ```bash
-python3 tools/upload_data.py            # dry run: what would change
-python3 tools/upload_data.py --confirm  # upload; needs AWS credentials
-```
-
-Both scripts share one set of rules. `upload_data.py` imports the sentinel
-guard, the content types, the change detection, and the upload pool from
-`publish.py`. It changes one thing, the directory it walks. Only the suffixes
-in its allow-list upload, so staged scratch files stay out of the bucket.
-
-## Test
-
-```bash
+tools/build.sh      # refresh manifest, fetch changed tiles, rebuild overviews
+tools/stac.sh       # STAC, thumbnails, guides, READMEs
 python3 tests/run_all.py
+GUIDE_BASE=$PWD/catalog python3 tests/test_agent_claims.py
+eval "$(source-coop creds --format env)"
+AWS_ENDPOINT_URL=https://data.source.coop python3 tools/publish.py --confirm
+git add -A && git commit -m "chore: sync with upstream" && git push
 ```
 
-| Gate | What it checks |
-|---|---|
-| `test_setup.py` | Template placeholders are all edited, or all untouched |
-| `test_links.py` | Every relative link and asset href resolves |
-| `test_publish.py` | Nothing outside `catalog/` can be uploaded |
-| `test_upload_data.py` | Only staged files with an allowed suffix upload |
-| `test_stac_valid.py` | Valid STAC 1.1.0, via `stac-check` |
-| `test_conformance.py` | Portolan conformance, via `rashid` |
+`tools/fetch.py` downloads only tiles that are missing or have a different
+size; delete a tile first to force it. A new release under a new prefix
+(say `Aggregated/VER1-6/`) needs `PREFIX` in `tools/upstream.py`, the
+version strings in `tools/products.py` and `.portolan/metadata.yaml`, and a
+new catalog version.
 
-The two validator gates skip when their tools are absent, so a clean checkout
-runs with no setup. CI installs both and enforces them.
-
-## What this template does not decide
-
-How a published catalog points back at the repository that maintains it. Three
-encodings are in use across real catalogs and none is standardized, so this
-template ships none of them rather than freezing one in by default. The
-tradeoffs are in
-[portolan-spec#145](https://github.com/portolan-sdi/portolan-spec/issues/145)
-and in the
-[git-backed catalogs guidance](https://github.com/portolan-sdi/portolan-spec/blob/main/specs/best-practices/git-backed-catalogs.md).
+`tools/publish.py` uploads only what differs from the bucket, and never
+deletes. Publishing writes `catalog/` (tiles, overviews, and metadata) to
+`s3://portolan-mirrors/global-surface-water/`.
 
 ## License
 
-Apache-2.0, covering the tooling in this repository. The data you catalog
-carries its own license, which belongs in `catalog/README.md`.
+The data: see `catalog/.portolan/metadata.yaml` (attribution "Source: EC
+JRC/Google"; cite Pekel et al. 2016). The code in this repository: see
+`LICENSE`.

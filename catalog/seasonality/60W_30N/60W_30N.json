@@ -1,0 +1,238 @@
+{
+  "type": "Feature",
+  "stac_version": "1.1.0",
+  "stac_extensions": [
+    "https://stac-extensions.github.io/file/v2.1.0/schema.json",
+    "https://stac-extensions.github.io/projection/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/raster/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/classification/v2.0.0/schema.json",
+    "https://stac-extensions.github.io/render/v2.0.0/schema.json"
+  ],
+  "id": "60W_30N",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          -60,
+          20
+        ],
+        [
+          -50,
+          20
+        ],
+        [
+          -50,
+          30
+        ],
+        [
+          -60,
+          30
+        ],
+        [
+          -60,
+          20
+        ]
+      ]
+    ]
+  },
+  "bbox": [
+    -60,
+    20,
+    -50,
+    30
+  ],
+  "properties": {
+    "title": "Seasonality, tile 60W_30N",
+    "description": "Seasonality for 10° × 10° tile 60W_30N (upper-left corner 60W, 30N).",
+    "datetime": null,
+    "start_datetime": "2022-01-01T00:00:00Z",
+    "end_datetime": "2024-12-31T23:59:59Z",
+    "proj:code": "EPSG:4326",
+    "proj:shape": [
+      40000,
+      40000
+    ],
+    "proj:transform": [
+      0.00025,
+      0,
+      -60,
+      0,
+      -0.00025,
+      30
+    ],
+    "renders": {
+      "default": {
+        "title": "Seasonality",
+        "assets": [
+          "data"
+        ],
+        "nodata": 255,
+        "colormap": {
+          "0": [
+            255,
+            255,
+            255,
+            0
+          ],
+          "1": [
+            153,
+            217,
+            234,
+            255
+          ],
+          "2": [
+            139,
+            197,
+            228,
+            255
+          ],
+          "3": [
+            125,
+            178,
+            222,
+            255
+          ],
+          "4": [
+            111,
+            158,
+            217,
+            255
+          ],
+          "5": [
+            97,
+            138,
+            211,
+            255
+          ],
+          "6": [
+            83,
+            118,
+            205,
+            255
+          ],
+          "7": [
+            70,
+            99,
+            199,
+            255
+          ],
+          "8": [
+            56,
+            79,
+            193,
+            255
+          ],
+          "9": [
+            42,
+            59,
+            187,
+            255
+          ],
+          "10": [
+            28,
+            39,
+            182,
+            255
+          ],
+          "11": [
+            14,
+            20,
+            176,
+            255
+          ],
+          "12": [
+            0,
+            0,
+            170,
+            255
+          ],
+          "255": [
+            204,
+            204,
+            204,
+            0
+          ]
+        }
+      }
+    }
+  },
+  "links": [
+    {
+      "rel": "root",
+      "href": "../../catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "parent",
+      "href": "../collection.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "collection",
+      "href": "../collection.json",
+      "type": "application/json"
+    }
+  ],
+  "assets": {
+    "data": {
+      "href": "./60W_30N.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "Seasonality (60W_30N)",
+      "roles": [
+        "data"
+      ],
+      "file:size": 514859,
+      "nodata": 255,
+      "classification:classes": [
+        {
+          "value": 0,
+          "name": "not_water",
+          "title": "Not water",
+          "color_hint": "FFFFFF"
+        },
+        {
+          "value": 1,
+          "name": "1_month_of_water",
+          "title": "1 month of water",
+          "color_hint": "99D9EA"
+        },
+        {
+          "value": 12,
+          "name": "12_months_of_water_permanent_water",
+          "title": "12 months of water (permanent water)",
+          "color_hint": "0000AA"
+        },
+        {
+          "value": 255,
+          "name": "no_data",
+          "title": "No data",
+          "color_hint": "CCCCCC",
+          "nodata": true
+        }
+      ],
+      "bands": [
+        {
+          "name": "seasonality",
+          "description": "Number of months in the year that water was present; 12 is permanent water.",
+          "data_type": "uint8",
+          "nodata": 255,
+          "raster:bits_per_sample": 8,
+          "raster:sampling": "area",
+          "unit": "months"
+        }
+      ]
+    },
+    "source": {
+      "href": "https://s3.waw4-1.cloudferro.com/swift/v1/global-surface-water/download2024/Aggregated/VER1-5/seasonality/seasonality_60W_30N_v1_5_2024.tif",
+      "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+      "title": "Upstream original (CloudFerro)",
+      "description": "The object this tile was copied from, byte for byte. The host sends no CORS headers.",
+      "roles": [
+        "source"
+      ],
+      "file:size": 514859
+    }
+  },
+  "collection": "seasonality"
+}

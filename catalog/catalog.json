@@ -4,9 +4,9 @@
   "stac_extensions": [
     "https://schemas.portolan-sdi.org/portolan/v0.2.0/schema.json"
   ],
-  "id": "example-catalog",
-  "title": "Example Catalog",
-  "description": "TODO(setup): one or two sentences saying what this catalog holds, who produced the data, and who it is for. A person and an agent both read this first.",
+  "id": "global-surface-water",
+  "title": "Global Surface Water Explorer v1.5",
+  "description": "A mirror of the aggregated layers of the [Global Surface Water Explorer](https://global-surface-water.appspot.com/) v1.5 (1984 to 2024), produced by the European Commission Joint Research Centre (JRC) with Google. The layers map where and when surface water occurred on land from March 1984 to December 2024, from the Landsat archive at a 0.00025° (about 30 m) grid. The catalog holds six collections, one per layer: occurrence, occurrence change intensity, seasonality, recurrence, transitions, and maximum extent. Each collection has the 504 upstream 10° × 10° cloud-optimized GeoTIFF tiles, copied byte for byte, plus one global overview COG for maps of the whole world. Read [AGENTS.md](AGENTS.md) before you query.",
   "links": [
     {
       "rel": "root",
@@ -26,14 +26,70 @@
       "title": "Catalog agent guide"
     },
     {
+      "rel": "child",
+      "href": "./occurrence/collection.json",
+      "type": "application/json",
+      "title": "Water occurrence"
+    },
+    {
+      "rel": "child",
+      "href": "./change/collection.json",
+      "type": "application/json",
+      "title": "Occurrence change intensity"
+    },
+    {
+      "rel": "child",
+      "href": "./seasonality/collection.json",
+      "type": "application/json",
+      "title": "Seasonality"
+    },
+    {
+      "rel": "child",
+      "href": "./recurrence/collection.json",
+      "type": "application/json",
+      "title": "Water recurrence"
+    },
+    {
+      "rel": "child",
+      "href": "./transitions/collection.json",
+      "type": "application/json",
+      "title": "Water transitions"
+    },
+    {
+      "rel": "child",
+      "href": "./extent/collection.json",
+      "type": "application/json",
+      "title": "Maximum water extent"
+    },
+    {
+      "rel": "self",
+      "href": "https://data.source.coop/portolan-mirrors/global-surface-water/catalog.json",
+      "type": "application/json"
+    },
+    {
+      "rel": "via",
+      "href": "https://global-surface-water.appspot.com/download",
+      "type": "text/html",
+      "title": "Global Surface Water Explorer: Data Access"
+    },
+    {
       "rel": "vcs",
-      "href": "https://github.com/TODO(setup)",
-      "title": "Source repository"
+      "href": "https://github.com/portolan-mirrors/global-surface-water",
+      "type": "text/html",
+      "title": "Build scripts and metadata"
     },
     {
       "rel": "issues",
-      "href": "https://github.com/TODO(setup)/issues",
-      "title": "Issue tracker"
+      "href": "https://github.com/portolan-mirrors/global-surface-water/issues",
+      "type": "text/html",
+      "title": "Report a problem"
+    },
+    {
+      "rel": "icon",
+      "href": "./_assets/logo.png",
+      "type": "image/png",
+      "title": "European Commission Joint Research Centre"
     }
-  ]
+  ],
+  "updated": "2026-11-24T10:44:59Z"
 }

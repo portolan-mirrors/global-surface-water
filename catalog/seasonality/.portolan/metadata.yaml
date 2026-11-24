@@ -1,0 +1,13 @@
+# Written by tools/stac.py from tools/products.py. Edit those, not this file.
+title: Seasonality
+description: 'Number of months in the year that water was present; 12 is permanent water. From the [GSW
+  v1.5 Data Users Guide](https://storage.googleapis.com/water-world/downloads_ancillary/DataUsersGuidev2024_v.5.pdf):
+  "The Seasonality map provides information concerning the intra-annual behaviour of water surfaces for
+  a single year and shows permanent and seasonal water and the number of months water was present. A permanent
+  water surface is underwater throughout the year, while a seasonal water surface is underwater for less
+  than 12 months of the year." The collection holds the 504 upstream 10° × 10° tiles as items, copied
+  byte for byte (0.00025° grid, EPSG:4326, uint8, nodata 255), and one global overview COG at 0.004° for
+  display. Read [AGENTS.md](AGENTS.md) for access patterns.'
+processing_notes: 'Tiles copied unchanged from `https://s3.waw4-1.cloudferro.com/swift/v1/global-surface-water/download2024/Aggregated/VER1-5/seasonality/`.
+  The overview (`seasonality-overview.tif`) resamples each tile from the full-resolution pixels with `mode`
+  to 0.004°, mosaics them, and sets nodata 255. Coverage: 2022-01-01 to 2024-12-31.'

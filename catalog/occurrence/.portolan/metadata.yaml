@@ -1,0 +1,14 @@
+# Written by tools/stac.py from tools/products.py. Edit those, not this file.
+title: Water occurrence
+description: 'How often surface water was present, March 1984 to December 2024, as a percentage of valid
+  observations. From the [GSW v1.5 Data Users Guide](https://storage.googleapis.com/water-world/downloads_ancillary/DataUsersGuidev2024_v.5.pdf):
+  "The frequency with which water was present on the surface from March 1984 to December 2024 was captured
+  in a single product called surface water occurrence (WO). To compute WO, the water detections (WD) and
+  valid observations (VO) from the same months are summed [...] such that WOmonth = ∑WD month / ∑VO month.
+  Averaging the results of all monthly WOmonth calculations gives the long-term overall surface water
+  occurrence." The collection holds the 504 upstream 10° × 10° tiles as items, copied byte for byte (0.00025°
+  grid, EPSG:4326, uint8, nodata 255), and one global overview COG at 0.004° for display. Read [AGENTS.md](AGENTS.md)
+  for access patterns.'
+processing_notes: 'Tiles copied unchanged from `https://s3.waw4-1.cloudferro.com/swift/v1/global-surface-water/download2024/Aggregated/VER1-5/occurrence/`.
+  The overview (`occurrence-overview.tif`) resamples each tile from the full-resolution pixels with `average`
+  to 0.004°, mosaics them, and sets nodata 255. Coverage: 1984-03-16 to 2024-12-31.'

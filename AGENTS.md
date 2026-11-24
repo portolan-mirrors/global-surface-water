@@ -27,48 +27,45 @@ Files between `ops-sync` markers are synced from [portolan-ops](https://github.c
 
 One canonical home per fact. If a value like a color, URL, or policy line exists in portolan-ops, link to it rather than copying it.
 <!-- ops-sync:end -->
-
 ## This Repository
 
-A template for a git-backed Portolan catalog. Repositories created from it
-inherit everything here, so a mistake in this file propagates.
+The build scripts and STAC metadata of the Portolan mirror of the JRC Global
+Surface Water Explorer v1.5 aggregated layers. The published catalog is
+`https://data.source.coop/portolan-mirrors/global-surface-water/catalog.json`.
 
-### The publish boundary
+### Edit the sources, not the outputs
 
-`catalog/` is the published catalog. Everything in it is published, and
-nothing outside it ever is. Do not move a file into `catalog/` to make it
-publish, and do not add a path outside `publish_dir` to `tools/publish.py`.
-The boundary is the only thing standing between a scratch file and a public
-bucket, and it holds because it is structural rather than a list of
-exclusions.
+Every per-layer fact lives in `tools/products.py`, copied from the Data Users
+Guide. `tools/stac.py` writes the STAC JSON and the collection
+`metadata.yaml` files; `tools/agents.py` writes every `AGENTS.md` under
+`catalog/`; `portolan readme` writes every `README.md`. Edit the generator or
+the root `catalog/.portolan/metadata.yaml`, then run `tools/stac.sh`. Never
+run `portolan add`: it would hash 40 GB and overwrite fields `stac.py` sets.
+
+### The tiles are upstream bytes
+
+Never rewrite a tile. The catalog states that each tile is byte-identical to
+the upstream object, and `tools/fetch.py` checks that against
+`manifest/upstream.json`. The overviews are the only derived files.
+
+### Checksums
+
+`file:checksum` is a SHOULD and costs a pass over 40 GB, so the tiles and
+overviews carry `file:size` only. Do not add a hashing step.
+
+### Validation before publishing
+
+Run `python3 tests/run_all.py`, the local recipe check
+(`GUIDE_BASE=$PWD/catalog python3 tests/test_agent_claims.py`), and the
+catalog grader on the local catalog. Do not run `portolan check` with the
+default data scope: it reads every tile.
 
 ### Data never enters git
 
-Never commit a GeoParquet, COG, PMTiles, Zarr, or COPC file. If a gate needs
-bytes to check, generate them in CI. Git keeps every version of a binary
-forever and deleting it later reclaims nothing.
-
-### The conformance allow-list
-
-`ACCEPTED` in `tests/test_conformance.py` ships empty. Never add an entry
-without a matching row in `docs/conformance.md` giving the rule, where it
-fires, why it is accepted, and the issue tracking its removal.
+`.gitignore` excludes every data format. Do not commit a COG or a Parquet file.
 
 ### Published agent guides
 
-Every claim in a `catalog/**/AGENTS.md` is either quoted from a source or
-measured from the data. An invented join key or column name produces a
-confident wrong answer that nothing downstream catches.
-
-### The links back to this repository
-
-`catalog/catalog.json` ships a `vcs` link and an `issues` link. Both hrefs are
-setup placeholders, so `tests/test_setup.py` catches a half-edited repository.
-The Portolan spec recommends these two links for a git-backed catalog. See
-[git-backed catalogs](https://github.com/portolan-sdi/portolan-spec/blob/main/specs/best-practices/git-backed-catalogs.md),
-which merged in August 2026.
-
-Keep both hrefs absolute. The repository sits outside the published catalog,
-so a relative href resolves against the public base URL. Each placeholder
-holds a `://`, because `tests/test_links.py` treats an href without one as a
-path and looks for it on disk.
+Every claim in a `catalog/**/AGENTS.md` is quoted from the Data Users Guide
+or checked by a fence that `tests/test_agent_claims.py` runs. A fence's
+comment lines are its expected output.

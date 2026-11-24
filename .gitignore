@@ -33,3 +33,8 @@ __pycache__/
 *.pyc
 .venv/
 .ruff_cache/
+
+# Build scratch outside catalog/
+work/
+*.vrt
+gdalwmscache/

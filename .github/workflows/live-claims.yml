@@ -1,0 +1,81 @@
+# Run every recipe in the agent guides against the published objects each
+# week, and probe range requests and CORS on the published host. A scheduled
+# failure opens one tracking issue, or comments on it; a later green
+# scheduled run closes it.
+name: Live claims
+
+on:
+  schedule:
+    - cron: "23 6 * * 1"
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - "catalog/**/AGENTS.md"
+      - "tests/test_agent_claims.py"
+      - "tools/agents.py"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: live-claims-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  DUCKDB_VERSION: v2.0.0
+  ISSUE_TITLE: "Live claims: documented recipes fail against the published data"
+
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: astral-sh/setup-uv@68559e99cc807c1eb7e9238fd43a15bba460eec2 # v10.3.3
+
+      - name: Install GDAL, DuckDB, and rashid
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -yq gdal-bin
+          curl -fsSL -o "$RUNNER_TEMP/duckdb.tar.gz" \
+            "https://github.com/duckdb/duckdb/releases/download/${DUCKDB_VERSION}/duckdb-cli-linux-amd64.tar.gz"
+          sudo tar -xzf "$RUNNER_TEMP/duckdb.tar.gz" -C /usr/local/bin duckdb
+          uv tool install 'rashid>=0.4.0,<0.5.0'
+
+      - name: Agent guide recipes against the published objects
+        run: python3 tests/test_agent_claims.py
+
+      # --no-data: the data pass reports PTL-DAT-011 on every COG, a false
+      # positive in rashid 0.4.0 (portolan-sdi/rashid#327).
+      - name: rashid probes the published hosting
+        run: >-
+          rashid check catalog --no-data --live
+          --live-base-url https://data.source.coop/portolan-mirrors/global-surface-water/
+
+  track:
+    needs: live
+    if: always() && github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - name: Open, update, or close the tracking issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RESULT: ${{ needs.live.result }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          num=$(gh issue list --state open --search "\"$ISSUE_TITLE\" in:title" --json number --jq '.[0].number // empty')
+          if [ "$RESULT" = "success" ]; then
+            if [ -n "$num" ]; then gh issue close "$num" --comment "The scheduled run passed: $RUN_URL"; fi
+          elif [ -n "$num" ]; then
+            gh issue comment "$num" --body "The scheduled run failed again: $RUN_URL"
+          else
+            printf 'The scheduled run of the agent guide recipes failed.\n\nRun: %s\n' "$RUN_URL" > body.md
+            gh issue create --title "$ISSUE_TITLE" --body-file body.md
+          fi

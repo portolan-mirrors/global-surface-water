@@ -1,0 +1,91 @@
+# Weekly check for a new or changed GSWE release on the upstream bucket.
+#
+# tools/upstream.py --diff lists download2024/Aggregated/VER1-5/ on CloudFerro
+# (name, size, hash of every tile) and compares it with the committed
+# manifest/upstream.json. A difference opens one tracking issue, or comments
+# on it if it is already open; a later clean run closes it. The rebuild is
+# manual (README, "Updating from upstream"), because a full rebuild moves
+# about 40 GB, more than a hosted runner holds.
+#
+# A new release under a new prefix (VER1-6, download2025) does not change
+# this listing. The second step checks the bucket for prefixes the manifest
+# does not cover.
+name: Upstream check
+
+on:
+  schedule:
+    - cron: "41 5 * * 3"
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: upstream-check
+  cancel-in-progress: false
+
+env:
+  ISSUE_TITLE: "Upstream: GSWE tiles changed on CloudFerro"
+
+jobs:
+  diff:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    outputs:
+      changed: ${{ steps.diff.outputs.changed }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Compare the upstream listing with the manifest
+        id: diff
+        run: |
+          set -uo pipefail
+          python3 -I tools/upstream.py --diff manifest/upstream.json > "$RUNNER_TEMP/report.md"
+          rc=$?
+          python3 -I tools/upstream.py --new-prefixes >> "$RUNNER_TEMP/report.md"
+          rc2=$?
+          cat "$RUNNER_TEMP/report.md"
+          if [ "$rc" -gt 1 ] || [ "$rc2" -gt 1 ]; then exit 2; fi
+          if [ "$rc" -eq 1 ] || [ "$rc2" -eq 1 ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: upstream-report
+          path: ${{ runner.temp }}/report.md
+
+  track:
+    needs: diff
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          name: upstream-report
+
+      - name: Open, update, or close the tracking issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          CHANGED: ${{ needs.diff.outputs.changed }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          num=$(gh issue list --state open --search "\"$ISSUE_TITLE\" in:title" --json number --jq '.[0].number // empty')
+          if [ "$CHANGED" = "true" ]; then
+            { cat report.md; printf '\nRun: %s\n' "$RUN_URL"; } > body.md
+            if [ -n "$num" ]; then
+              gh issue comment "$num" --body-file body.md
+            else
+              gh issue create --title "$ISSUE_TITLE" --body-file body.md
+            fi
+          elif [ -n "$num" ]; then
+            gh issue close "$num" --comment "Upstream matches the manifest again: $RUN_URL"
+          fi

@@ -1,0 +1,60 @@
+{
+  "spec_version": "1.0.0",
+  "current_version": "1.0.2",
+  "versions": [
+    {
+      "version": "1.0.0",
+      "created": "2026-11-24T10:06:54.733786Z",
+      "breaking": false,
+      "assets": {
+        "items.parquet": {
+          "sha256": "2d2d18da00a027ceaa2663e443615970fb8a453a22b8a2c76601f1e8f838a7ee",
+          "size_bytes": 114496,
+          "href": "occurrence/items.parquet",
+          "mtime": 1795514814.7206213,
+          "source_fingerprint": "dea08200b3f689d204cc05eee0f6d9406eab1f58340b9b64b4cd7e5336be226d"
+        }
+      },
+      "changes": [
+        "items.parquet"
+      ],
+      "message": "Generated items.parquet for STAC GeoParquet queries"
+    },
+    {
+      "version": "1.0.1",
+      "created": "2026-11-24T10:38:21.021805Z",
+      "breaking": false,
+      "assets": {
+        "items.parquet": {
+          "sha256": "ccf4f002f204e4ba1f45e298b74ab758de3adb1327a2661a7a7e73e66a578fdf",
+          "size_bytes": 118467,
+          "href": "occurrence/items.parquet",
+          "mtime": 1795516701.009557,
+          "source_fingerprint": "bbf5bc2a0023c5b414b0b8ec4968204423dfd36463241954130f6342a5dc9e6b"
+        }
+      },
+      "changes": [
+        "items.parquet"
+      ],
+      "message": "Generated items.parquet for STAC GeoParquet queries"
+    },
+    {
+      "version": "1.0.2",
+      "created": "2026-11-24T10:39:34.436235Z",
+      "breaking": false,
+      "assets": {
+        "items.parquet": {
+          "sha256": "529b382f395f16808421f57855b15d817a686cafa738bd29c6926a0a9da59bae",
+          "size_bytes": 118925,
+          "href": "occurrence/items.parquet",
+          "mtime": 1795516774.4238544,
+          "source_fingerprint": "a25d3ee4d250f0c471c5927ddba784862611aaca8398bbaf4bdb40479b2e5c66"
+        }
+      },
+      "changes": [
+        "items.parquet"
+      ],
+      "message": "Generated items.parquet for STAC GeoParquet queries"
+    }
+  ]
+}

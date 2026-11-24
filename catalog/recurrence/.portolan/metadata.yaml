@@ -1,0 +1,13 @@
+# Written by tools/stac.py from tools/products.py. Edit those, not this file.
+title: Water recurrence
+description: 'How often water returned from year to year, as a percentage of observation years within
+  each pixel''s water period. From the [GSW v1.5 Data Users Guide](https://storage.googleapis.com/water-world/downloads_ancillary/DataUsersGuidev2024_v.5.pdf):
+  "Water recurrence is a measurement of the degree of inter-annual variability in the presence of water.
+  This describes how frequently water returned from one year to another (expressed as a percentage). [...]
+  Water recurrence is then calculated as the ratio of the number of water years to observation years."
+  The collection holds the 504 upstream 10° × 10° tiles as items, copied byte for byte (0.00025° grid,
+  EPSG:4326, uint8, nodata 255), and one global overview COG at 0.004° for display. Read [AGENTS.md](AGENTS.md)
+  for access patterns.'
+processing_notes: 'Tiles copied unchanged from `https://s3.waw4-1.cloudferro.com/swift/v1/global-surface-water/download2024/Aggregated/VER1-5/recurrence/`.
+  The overview (`recurrence-overview.tif`) resamples each tile from the full-resolution pixels with `average`
+  to 0.004°, mosaics them, and sets nodata 255. Coverage: 1984-03-16 to 2024-12-31.'
